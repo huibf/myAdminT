@@ -14,3 +14,21 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(["namespace"=>"Roast\Web","prefix"=>"roast"],function(){
+    Route::get('/', 'AppController@getApp')->middleware('auth');
+    Route::get('/login', 'AppController@getLogin' )
+        ->name('roast.login')
+        ->middleware('guest');
+
+
+    Route::group(['prefix'=>'auth','middleware'=>'guest'],function(){
+        Route::get( '{social}', 'AuthenticationController@getSocialRedirect' )
+            ->middleware('guest');
+
+        Route::get( '{social}/callback', 'AuthenticationController@getSocialCallback' )
+            ->middleware('guest');
+    });
+});
+
+
