@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+//路由添加了一个 prefix 属性方便我们后续管理 API 的版本,同时为群组路由设置了中间件 auth:api，意味着该群组中的所有路由都需要用户认证后才能访问
+Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
+    Route::get('/user', function( Request $request ){
+        return $request->user();
+    });
 });

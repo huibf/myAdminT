@@ -32,3 +32,7 @@ Route::group(["namespace"=>"Roast\Web","prefix"=>"roast"],function(){
 });
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
