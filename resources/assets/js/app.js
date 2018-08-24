@@ -40,7 +40,11 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-window.Vue = require('vue');
+// window.Vue = require('vue');
+import Vue from 'vue';//引入vue
+
+import router from './routes.js';
+import store from './store.js';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -65,6 +69,11 @@ window.Vue = require('vue');
 //     require('./components/passport/PersonalAccessTokens.vue')
 // );
 
-const app = new Vue({
-    el: '#app'
-});
+// const app = new Vue({
+//     el: '#app'
+// });
+
+new Vue({
+    router,
+    store
+}).$mount('#app');
